@@ -2,7 +2,7 @@
 public class LocationBuilder {
 
 	private LocationObjectMother mother;
-	
+
 	public LocationBuilder() {
 		this.mother = new LocationObjectMother();
 	}
@@ -14,11 +14,11 @@ public class LocationBuilder {
 	public LocationBuilder withCity(City city) {
 		this.mother.City = city;
 		return this;
-		
+
 	}
 
 	public LocationObjectMother build() {
 		return this.mother;
 	}
-	
+
 }

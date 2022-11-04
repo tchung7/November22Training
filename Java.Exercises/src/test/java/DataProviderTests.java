@@ -37,7 +37,7 @@ public class DataProviderTests {
 
 		Assert.assertEquals(actualState.Name, expectedState, "The correst state should be returned.");
 	}
-	
+
 	@Test
 	public void canGetHawaiiName() {
 		var expectedState = "Hawaii";
@@ -64,7 +64,7 @@ public class DataProviderTests {
 
 		Assert.assertEquals(actualCity, expectedCity, "The City name should be returned.");
 	}
-	
+
 	@Test
 	public void canGetTexasFromObjectMother() {
 		var expectedState = "Texas";
