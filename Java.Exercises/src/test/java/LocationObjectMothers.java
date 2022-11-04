@@ -2,7 +2,6 @@
 public class LocationObjectMothers {
 
 	public static LocationObjectMother SanFrancisco() {
-		// TODO Auto-generated method stub
 		return new LocationBuilder()
 				.withState(States.California)
 				.withCity(Cities.SanFrancisco)
