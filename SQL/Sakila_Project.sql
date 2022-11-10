@@ -21,14 +21,8 @@ call GetAlienCenterInventory;
 
 start transaction;
 
-set foreign_key_checks = 0;
-
-insert into staff values(3,'Tristan','Chung',5, null, 'tristanchung97@gmail.com', 3,1,'Tristan', null, now());
+insert into staff values(3,'Tristan','Chung',5, null, 'tristanchung97@gmail.com', 1,1,'Tristan', null, now());
 insert into store values(3,3,3, now());
-
-delete from staff where staff_id = 3;
-delete from store where store_id = 3;
-set foreign_key_checks = 1;
 commit;
 
 select count(*) as '# of movies', rating from film group by rating order by 1 DESC;
