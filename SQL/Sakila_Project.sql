@@ -21,12 +21,7 @@ create view bob_fawcett_films as select f.* from film as f join film_actor as fa
 select film_info from actor_info;
 
 #Use a stored Procedure to get the 4 inventory ids for the film "Alien Center" at store #2
-CREATE PROCEDURE `GetAlienCenterInventory`()
-begin
-	select inventory_id from inventory as i join film as f on i.film_id = f.film_id where f.title = 'Alien Center' and i.store_id = 2;
-end;
-
-call GetAlienCenterInventory;
+call film_in_stock(15,2, @out_value);
 
 # Create a transaction to insert a new store with a timestamp and then delete that store
 start transaction;
