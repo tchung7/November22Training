@@ -18,7 +18,7 @@ select * from payment as p join customer as c on p.customer_id = c.customer_id w
 # Use a view to get the film info for actor Bob Fawcett
 create view bob_fawcett_films as select f.* from film as f join film_actor as fa on fa.film_id = f.film_id join actor as a on a.actor_id = fa.actor_id where a.first_name = 'Bob' and a.last_name = 'Fawcett';
 
-select film_info from actor_info;
+select film_info from actor_info where actor_id = 19;
 
 #Use a stored Procedure to get the 4 inventory ids for the film "Alien Center" at store #2
 call film_in_stock(15,2, @out_value);
