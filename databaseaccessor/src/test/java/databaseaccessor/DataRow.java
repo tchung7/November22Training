@@ -1,5 +1,5 @@
 package databaseaccessor;
 
-public class DataRow {
-
+public interface DataRow {
+	String[] GetColumns();
 }
