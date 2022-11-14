@@ -1,9 +1,13 @@
 package databaseaccessor;
 
+import java.sql.SQLException;
+
 public interface DatabaseAccessor {
-	String[] ExecuteSingleColumn(String sql);
-	
-	String ExecuteSingleCell(String sql);
-	
-	DataRow[] Execute(String sql);
+	public String[] ExecuteSingleStringColumn(String sql) throws SQLException;
+
+	public int[] ExecuteSingleIntColumn(String sql) throws SQLException;
+
+	public String ExecuteSingleStringCell(String sql) throws SQLException;
+
+	public int setId(String sql) throws SQLException;
 }
