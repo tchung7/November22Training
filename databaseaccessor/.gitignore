@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 /target/
 /test-output/
+=======
+/test-output/
+/bin/
+>>>>>>> develop
