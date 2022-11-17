@@ -7,13 +7,14 @@ import java.sql.Statement;
 
 public class DatabaseUtility implements DatabaseAccessor {
 
-	private static Statement stmt;
+	private Statement stmt;
+	private  Connection conn;
 
 	public DatabaseUtility() throws SQLException {
 		String url = "jdbc:mysql://localhost:3306/sakila";
 		DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
-		Connection conn = DBInstance.getConnection();
-		stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		this.conn = DBInstance.getConnection();
+		this.stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 	}
 
 	@Override
@@ -34,6 +35,9 @@ public class DatabaseUtility implements DatabaseAccessor {
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
+		}
+		finally {
+			this.conn.close();
 		}
 		return result;
 	}
