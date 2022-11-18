@@ -1,9 +1,0 @@
-CSS Selector Project
-
-1. $("[id=userName]")
-2. $("button[class~=btn-primary]")
-3. $("#app > footer > span")
-4. $("#nav > li:nth-child(n+1) > a")
-5. $("option[value='4']")
-6. document.getElementById("sliderValue")
-7. document.querySelector("#userName")
