@@ -1,7 +1,7 @@
 Test Case #1 
-Create Account with Valid Information
-Entering valid information in create account page
-Pre conditions -Email, Username, First Name, Last Name, Password, Reenter Password, Country
+Account Creation
+Entering valid information in create account page will result in account created
+Pre conditions - User account does not already exist
 Traceability to Requirement - Create Account with Application
 Step 1 - Click Account Icon
 Step 2 - Click "Create Account" button
@@ -12,8 +12,8 @@ Account Home Page is loaded.
 
 Test Case #2
 Create Account with Invalid Information
-Enter invalid username in create account page
-Pre conditions -Email, Username, First Name, Last Name, Password, Reenter Password, Country
+Enter invalid username in create account page will result in alert message loaded.
+Pre conditions - User account already exists.
 Traceability to Requirement - Create Account with Application
 Step 1 - Click Account Icon
 Step 2 - Click "Create Account" button
@@ -23,7 +23,7 @@ Expected Result - Alert message "There was some problem, please contact customer
 
 Test Case #3 
 Login with Valid credentials
-Entering Valid username and password loads account home page
+Entering Valid username and password loads account home page will load account home page
 Preconditions - Username, Password
 Traceability to Requirement - Login to the Application
 Step 1 - Click the Account Icon
@@ -33,8 +33,8 @@ Expected Result - Account Home page is loaded.
 
 Test Case #4 
 Successfully submit support ticket
-Login sucessfully and then successfully submit support ticket
-Preconditions - Valid Username, Valid Password, Product, Description
+Login sucessfully and then successfully submit support ticket will result in ticket posted to your account.
+Preconditions - User account already exists
 Traceability to Requirement - Support ticket submission
 Step 1 - Click Support in Navigation Bar
 Step 2 - Click the "Contact Support" icon (hyperlink)
