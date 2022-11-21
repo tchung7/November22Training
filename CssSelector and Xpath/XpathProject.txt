@@ -1,0 +1,9 @@
+XPath Project
+
+1. $x("//*[@id='userName']")
+2. $x("//*[@type='button']")
+3. $x("//div[@Class='ReactTable -striped -highlight']//div[text()='Vega']")
+4. $x("//*[@id='impressiveRadio']/..")
+5. $x("//*[@id='impressiveRadio'] /ancestor::div")
+6. $x("*//input[@id='impressiveRadio']/div/..//label")
+7. $x("//button[contains(., 'Click')]")

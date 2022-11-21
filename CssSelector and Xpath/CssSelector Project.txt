@@ -1,0 +1,12 @@
+CSS Selector Project
+
+All problems are located on the site http://www.demoqa.com/. Use CSS Selectors. Use the shortest 
+form possible. Avoid locating by index or spatial position unless otherwise noted. 
+
+1. $("[id=userName]")
+2. $("button[class~=btn-primary]")
+3. $("#app > footer > span")
+4. $("ul[id='nav']>li")
+5. $("div#selectMenuContainer option[value='4']")
+6. document.getElementsByClassName('range-slider range-slider--primary')[0].value
+7. document.getElementsByClassName('range-slider range-slider--primary')[0].value=30
