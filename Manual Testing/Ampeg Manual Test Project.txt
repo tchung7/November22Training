@@ -1,0 +1,68 @@
+Test Case #1 
+Account Creation
+Entering valid information in create account page will result in account created
+Pre conditions - User account does not already exist
+Traceability to Requirement - Create Account with Application
+Step 1 - Click Account Icon
+Step 2 - Click "Create Account" button
+Step 3 - Enter Valid Information
+Step 4 - Click "Create your account" button
+Expected Result - Account is successfully created and 
+Account Home Page is loaded.
+
+Test Case #2
+Create Account with Invalid Information
+Enter invalid username in create account page will result in alert message loaded.
+Pre conditions - User account already exists.
+Traceability to Requirement - Create Account with Application
+Step 1 - Click Account Icon
+Step 2 - Click "Create Account" button
+Step 3 - Enter Invalid/Taken Username and other info
+Step 4 - Click "Create your account" button
+Expected Result - Alert message "There was some problem, please contact customer support. 268: Username already exists" is triggered.
+
+Test Case #3 
+Login with Valid credentials
+Entering Valid username and password loads account home page will load account home page
+Preconditions - Username, Password
+Traceability to Requirement - Login to the Application
+Step 1 - Click the Account Icon
+Step 2 - Enter Valid Username and Password
+Step 3 - Click the "Sign In" button
+Expected Result - Account Home page is loaded.
+
+Test Case #4 
+Successfully submit support ticket
+Login sucessfully and then successfully submit support ticket will result in ticket posted to your account.
+Preconditions - User account already exists
+Traceability to Requirement - Support ticket submission
+Step 1 - Click Support in Navigation Bar
+Step 2 - Click the "Contact Support" icon (hyperlink)
+Step 3 - Enter Valid username and password
+Step 4 - Click Login
+Step 5 - Choose Product
+Step 6 - Add Description
+Step 7 - Click "Send" button
+Expected Result - Ticket is submitted and shown in tickets page with ID, Request/Description, Status, and Date Changed
+
+Test Case #5
+Go to zZounds webpage for Heritage SVT product listing
+Successfully find zZounds dealer for Ampeg Heritage 50th anniversary SVT product
+Preconditions - Valid Username, Valid Password, Product, Description
+Traceability to Requirement - Find Dealer for desired Product
+Step 1 - Click on Products in Navigation Bar
+Step 2 - Click the "Heritage Series" splash
+Step 3 - Find "Heritage 50th Anniversary SVT" product
+Step 4 - Click "Buy Now" button
+Step 5 - Click "Buy Now" button under zZounds text
+Expected Result - Pop-up with selection of dealers should load and clicking buy now under zZounds takes you to their page with the product listing.
+
+Test Case #6
+Navigate to Ampeg Instagram
+Clicking Instagram icon navigates to Ampeg's instagram page
+Preconditions - N/A
+Traceability to Requirement - Social media links
+Step 1 - Go to ampeg.com
+Step 2 - Scroll down to bottom of page
+Step 3 - Click Instagram icon
+Expected Result - Ampeg instagram page is loaded.
