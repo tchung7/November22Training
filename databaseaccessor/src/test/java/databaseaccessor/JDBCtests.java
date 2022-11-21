@@ -2,61 +2,63 @@ package databaseaccessor;
 
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-
-public class JDBCtests {
-
-	private DatabaseAccessor db;
+public class JDBCtests extends DatabaseTests {
 
 	@Test
-	public void testA1() throws SQLException {
-		var expectedResult = new String[] {"Ziguinchor"
-, "Zhoushan", "Zhezqazghan", "Zeleznogorsk", "Zaria", "Zapopan", "Zaoyang", "Zanzibar", "Zalantun", "Yuzhou"};
-		
-		var actualResult = db.ExecuteSingleStringColumn("select city from city order by city desc limit 10");
-		
-		Assert.assertEquals(actualResult, expectedResult, "Executed Query does not match expected result");
-		System.out.println(Arrays.toString(actualResult));
+	public void canGet10CitiesInDescAlphaOrder() throws SQLException {
+		var expectedResult = new String[] { "Ziguinchor", "Zhoushan", "Zhezqazghan", "Zeleznogorsk", "Zaria", "Zapopan",
+				"Zaoyang", "Zanzibar", "Zalantun", "Yuzhou" };
+
+		var result = this.sakilaQueries.get10CitiesInDescAlphaOrder();
+
+		assertEquals(result, expectedResult, "the query should return the cities in order.");
 	}
 
 	@Test
-	public void testB3() throws SQLException {
+	public void canGetHighestPaymentAmount() throws SQLException {
 		var expectedResult = "11.99";
-		var actualResult = db.ExecuteSingleStringCell("select max(amount) from payment");
-		
-		Assert.assertEquals(actualResult, expectedResult, "Executed Query does not match expected result");
-		System.out.println(actualResult);
+
+		var result = this.sakilaQueries.getHighestPaymentAmount();
+
+		assertEquals(result, expectedResult, "the query should return a single cell.");
 	}
 
 	@Test
-	public void testC6() throws SQLException {
-		var expectedResult = "Action: DARN FORRESTER; Animation: DARES PLUTO, LAWLESS VISION, OSCAR GOLD; Children: CIRCUS YOUTH; Classics: DYNAMITE TARZAN; Comedy: CONTROL ANTHEM, HATE HANDICAP, SADDLE ANTITRUST; Documentary: ADAPTATION HOLES, PELICAN COMFORTS; Drama: JACKET FRISCO, SCORPION APOLLO; Family: HOMICIDE PEACH; Games: DAZED PUNK; Horror: ACE GOLDFINGER; Music: PERSONAL LADYBUGS, RUNNER MADIGAN, TAXI KICK; New: CHINATOWN GLADIATOR, JUMANJI BLADE, RUN PACIFIC; Sci-Fi: RAGING AIRPLANE; Travel: LEATHERNECKS DWARFS, SHAWSHANK BUBBLE";
-		
-		var actor_id = db.setId("select actor_id from actor where first_name = \"Bob\" and last_name = \"Fawcett\"");
-		var actualResult = db.ExecuteSingleStringCell("select film_info from actor_info where actor_id = " + actor_id);
-		
-		Assert.assertEquals(actualResult, expectedResult, "Executed Query does not match expected result");
-		System.out.println(actualResult);
+	public void canUseViewToGetFilmInfo() throws SQLException {
+		var expectedResult = "Action: DARN FORRESTER; " + "Animation: DARES PLUTO, LAWLESS VISION, OSCAR GOLD; "
+				+ "Children: CIRCUS YOUTH; " + "Classics: DYNAMITE TARZAN; "
+				+ "Comedy: CONTROL ANTHEM, HATE HANDICAP, SADDLE ANTITRUST; "
+				+ "Documentary: ADAPTATION HOLES, PELICAN COMFORTS; " + "Drama: JACKET FRISCO, SCORPION APOLLO; "
+				+ "Family: HOMICIDE PEACH; " + "Games: DAZED PUNK; " + "Horror: ACE GOLDFINGER; "
+				+ "Music: PERSONAL LADYBUGS, RUNNER MADIGAN, TAXI KICK; "
+				+ "New: CHINATOWN GLADIATOR, JUMANJI BLADE, RUN PACIFIC; " + "Sci-Fi: RAGING AIRPLANE; "
+				+ "Travel: LEATHERNECKS DWARFS, SHAWSHANK BUBBLE";
+
+		var result = this.sakilaQueries.getFilmInfo();
+
+		assertEquals(result, expectedResult, "the query should return a single cell with the film info.");
 	}
 
 	@Test
-	public void testD7() throws SQLException {
-		var expectedResult = new int[] {73,74,75,76};
+	public void canUseStoredProcToGetFilmIds() throws SQLException {
+		var row1 = new ResultDataRow("inventory_id", "73");
+		var row2 = new ResultDataRow("inventory_id", "74");
+		var row3 = new ResultDataRow("inventory_id", "75");
+		var row4 = new ResultDataRow("inventory_id", "76");
 
-		var film_id = db.setId("select film_id from film as f where f.title = 'Alien Center'");
-		var actualResult = db.ExecuteSingleIntColumn("call film_in_stock(" + film_id + ", 2, @out_value)");
+		var expectedResult = new ArrayList<DataRow>();
+		expectedResult.add(row1);
+		expectedResult.add(row2);
+		expectedResult.add(row3);
+		expectedResult.add(row4);
+
+		var result = this.sakilaQueries.getFilmIds();
 		
-		Assert.assertEquals(actualResult, expectedResult, "Executed Query does not match expected result");
-		System.out.println(Arrays.toString(actualResult));
+		assertEquals(result, expectedResult, "the query should give the film ids.");
 	}
-
-	@BeforeMethod
-	public void setUp() throws SQLException {
-		this.db = new DatabaseUtility();
-	}
-
 }
