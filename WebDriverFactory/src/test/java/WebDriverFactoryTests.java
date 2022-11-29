@@ -1,5 +1,6 @@
 import static org.testng.Assert.assertEquals;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ public class WebDriverFactoryTests {
 	@BeforeMethod
 	public void beforeMethod() {
 		this.baseUrl = "https://www.ampeg.com";
+		browser = this.getBrowser();
 		this.launchDriver();
 	}
 
@@ -34,6 +36,18 @@ public class WebDriverFactoryTests {
 	public void ensureWebDriverisCorrect() {
 		var expectedDriver = this.driverManager.getDriver();
 		assertEquals(this.driver, expectedDriver, "WebDriver should be configured for the correct browser. ");
+	}
+
+	private String getBrowser() {
+		String inputString = null;
+
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter Browser to be used: ");
+			inputString = sc.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return inputString;
 	}
 
 	private void launchDriver() {
