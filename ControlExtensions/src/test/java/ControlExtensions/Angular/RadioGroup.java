@@ -40,7 +40,7 @@ public class RadioGroup extends ControlExtension implements ControlExtensions.Ra
 				selectedLabel = labels.get(i).getText();
 				break;
 			} else if (isSelected == false && labels.get(i).getText().equals("No")) {
-				selectedLabel = labels.get(i).getText();
+				selectedLabel = "Unable to Select 'No'.";
 				break;
 			}
 		}

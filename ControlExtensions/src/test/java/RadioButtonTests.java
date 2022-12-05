@@ -1,6 +1,7 @@
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 import foundation.TestBase;
 
@@ -48,10 +49,9 @@ public class RadioButtonTests extends TestBase {
 		var button = radioGroup.getButton("No");
 
 		button.select();
-
-		var expectedLabel = "No";
-
-		var actualLabel = radioGroup.getSelected();
-		assertEquals(actualLabel, expectedLabel, "No should be returned.");
+		
+		var expectedResult = "Unable to Select 'No'.";
+		var actualResult = radioGroup.getSelected();
+		assertEquals(actualResult, expectedResult, "No should be returned.");
 	}
 }
