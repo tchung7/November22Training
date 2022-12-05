@@ -7,12 +7,15 @@ public class V4bManualDownloadPage extends PageObject {
 		super(driver);
 	}
 
-	public String clickEnglishQuickStartGuide() {
+	public V4bManualDownloadPage clickEnglishQuickStartGuide() {
 		var childElement = this.driver.findElement(By.xpath("//*[contains(text(), 'Quick Start Guide')]"));
 		var parentElement = childElement.findElement(By.xpath("./.."));
 		parentElement.findElement(By.tagName("a")).click();
-
-		return this.driver.getCurrentUrl();
+		
+		return this;
 	}
 
+	public String getFileEmbed() {
+		return this.driver.findElement(By.tagName("embed")).getAttribute("name");
+	}
 }
