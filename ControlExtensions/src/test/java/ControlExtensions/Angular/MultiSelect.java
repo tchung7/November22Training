@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -37,6 +39,20 @@ public class MultiSelect extends ControlExtension implements ControlExtensions.M
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void setMultiSelectSelection(String[] selection) {
+		for (String name : selection) {
+			mappedElement.sendKeys(name + Keys.ENTER);
+		}
+	}
+
+	public String[] getMultiSelectMenuSelection() {
+		List<WebElement> selection = mappedElement.findElements(By.xpath("../../..//div[div[@class='css-12jo7m5']]"));
+		for (WebElement element : selection) {
+			selectedList.add(element.getText());
+		}
+		return selectedList.toArray(new String[selectedList.size()]);
 	}
 
 	@Override

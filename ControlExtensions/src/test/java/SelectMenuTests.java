@@ -67,4 +67,17 @@ public class SelectMenuTests extends TestBase {
 
 		assertEquals(actualResult, expectedResult, "Volvo and Saab should be returned.");
 	}
+	
+	@Test
+	public void ensureMultiSelectWorksOnWeirdMenu() {
+
+		var expectedResult = new String[] { "Red", "Black"};
+
+		MultiSelect selector = page.getWeirdMultiMenu();
+
+		selector.setMultiSelectSelection(expectedResult);
+		var actualResult = selector.getMultiSelectMenuSelection();
+
+		assertEquals(actualResult, expectedResult, "Red and Black should be returned.");
+	}
 }

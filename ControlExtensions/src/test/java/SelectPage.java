@@ -13,6 +13,9 @@ public class SelectPage extends PageObject {
 
 	@FindBy(how = How.ID, using = "cars")
 	private WebElement multiSelectMenu;
+	
+	@FindBy(how = How.ID, using="react-select-4-input")
+	private WebElement weirdMultiMenu;
 
 	public SelectPage(WebDriver driver) {
 		super(driver);
@@ -33,5 +36,9 @@ public class SelectPage extends PageObject {
 
 	public MultiSelect getStandardMultipleMenu() {
 		return new MultiSelect(multiSelectMenu);
+	}
+	
+	public MultiSelect getWeirdMultiMenu() {
+		return new MultiSelect(weirdMultiMenu);
 	}
 }
