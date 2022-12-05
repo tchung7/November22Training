@@ -47,11 +47,24 @@ public class SelectMenuTests extends TestBase {
 
 		var expectedResult = new String[] { "Red", "Voilet" };
 
-		MultiSelect selector = page.getMultiSelect();
+		MultiSelect selector = page.getOldStyleMenu();
 
 		selector.selectAll(expectedResult);
 		var actualResult = selector.getSelected();
 
 		assertEquals(actualResult, expectedResult, "Red and Voilet should be returned.");
+	}
+	
+	@Test
+	public void ensureMultiSelectWorksOnMultiEnabled() {
+
+		var expectedResult = new String[] { "Volvo", "Saab"};
+
+		MultiSelect selector = page.getStandardMultipleMenu();
+
+		selector.selectAll(expectedResult);
+		var actualResult = selector.getSelected();
+
+		assertEquals(actualResult, expectedResult, "Volvo and Saab should be returned.");
 	}
 }

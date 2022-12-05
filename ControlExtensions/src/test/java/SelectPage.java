@@ -9,7 +9,10 @@ import ControlExtensions.Angular.OldStyleMenu;
 public class SelectPage extends PageObject {
 
 	@FindBy(how = How.ID, using = "oldSelectMenu")
-	private WebElement menuElement;
+	private WebElement oldStyleMenu;
+
+	@FindBy(how = How.ID, using = "cars")
+	private WebElement multiSelectMenu;
 
 	public SelectPage(WebDriver driver) {
 		super(driver);
@@ -21,11 +24,14 @@ public class SelectPage extends PageObject {
 	}
 
 	public OldStyleMenu getSelectMenu() {
-		return new OldStyleMenu(menuElement);
+		return new OldStyleMenu(oldStyleMenu);
 	}
 
-	public MultiSelect getMultiSelect() {
-		return new MultiSelect(menuElement);
+	public MultiSelect getOldStyleMenu() {
+		return new MultiSelect(oldStyleMenu);
 	}
 
+	public MultiSelect getStandardMultipleMenu() {
+		return new MultiSelect(multiSelectMenu);
+	}
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 public class MultiSelect extends ControlExtension implements ControlExtensions.MultiSelect {
 	Select menu;
 	List<String> selectedList = new ArrayList<>();
-	
+
 	public MultiSelect(WebElement mappedElement) {
 		super(mappedElement);
 	}
@@ -18,19 +18,36 @@ public class MultiSelect extends ControlExtension implements ControlExtensions.M
 	@Override
 	public void selectAll(String[] selectees) {
 		this.menu = new Select(this.mappedElement);
-		try {
-			for (String optionName: selectees) {
-				this.menu.selectByVisibleText(optionName);
-				selectedList.add(this.menu.getFirstSelectedOption().getText());
+
+		if (this.menu.isMultiple() == true) {
+			try {
+				for (String optionName : selectees) {
+					this.menu.selectByVisibleText(optionName);
+				}
+			} catch (NoSuchElementException e) {
+				e.printStackTrace();
 			}
-		}
-		catch (NoSuchElementException e) {
-			e.printStackTrace();
+		} else {
+			try {
+				for (String optionName : selectees) {
+					this.menu.selectByVisibleText(optionName);
+					selectedList.add(this.menu.getFirstSelectedOption().getText());
+				}
+			} catch (NoSuchElementException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	@Override
 	public String[] getSelected() {
-		return selectedList.toArray(new String[selectedList.size()]);
+		if (this.menu.isMultiple()) {
+			for (WebElement selected : this.menu.getAllSelectedOptions()) {
+				selectedList.add(selected.getText());
+			}
+			return selectedList.toArray(new String[selectedList.size()]);
+		} else {
+			return selectedList.toArray(new String[selectedList.size()]);
+		}
 	}
 }
