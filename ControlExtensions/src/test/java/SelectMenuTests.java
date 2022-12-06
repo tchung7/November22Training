@@ -8,7 +8,7 @@ import ControlExtensions.Angular.MultiSelect;
 import foundation.TestBase;
 
 public class SelectMenuTests extends TestBase {
-	
+
 	SelectPage page;
 
 	@BeforeMethod
@@ -54,11 +54,11 @@ public class SelectMenuTests extends TestBase {
 
 		assertEquals(actualResult, expectedResult, "Red and Voilet should be returned.");
 	}
-	
+
 	@Test
 	public void ensureMultiSelectWorksOnMultiEnabled() {
 
-		var expectedResult = new String[] { "Volvo", "Saab"};
+		var expectedResult = new String[] { "Volvo", "Saab" };
 
 		MultiSelect selector = page.getStandardMultipleMenu();
 
@@ -67,16 +67,17 @@ public class SelectMenuTests extends TestBase {
 
 		assertEquals(actualResult, expectedResult, "Volvo and Saab should be returned.");
 	}
-	
+
 	@Test
 	public void ensureMultiSelectWorksOnWeirdMenu() {
 
-		var expectedResult = new String[] { "Red", "Black"};
+		var expectedResult = new String[] { "Red", "Black" };
 
 		MultiSelect selector = page.getWeirdMultiMenu();
 
 		selector.setMultiSelectSelection(expectedResult);
-		var actualResult = selector.getMultiSelectMenuSelection();
+
+		var actualResult = selector.getSelected();
 
 		assertEquals(actualResult, expectedResult, "Red and Black should be returned.");
 	}

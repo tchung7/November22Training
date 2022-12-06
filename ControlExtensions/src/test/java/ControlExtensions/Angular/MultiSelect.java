@@ -47,23 +47,21 @@ public class MultiSelect extends ControlExtension implements ControlExtensions.M
 		}
 	}
 
-	public String[] getMultiSelectMenuSelection() {
-		List<WebElement> selection = mappedElement.findElements(By.xpath("../../..//div[div[@class='css-12jo7m5']]"));
-		for (WebElement element : selection) {
-			selectedList.add(element.getText());
-		}
-		return selectedList.toArray(new String[selectedList.size()]);
-	}
-
 	@Override
 	public String[] getSelected() {
-		if (this.menu.isMultiple()) {
-			for (WebElement selected : this.menu.getAllSelectedOptions()) {
-				selectedList.add(selected.getText());
+		if (this.menu != null) {
+			if (this.menu.isMultiple()) {
+				for (WebElement selected : this.menu.getAllSelectedOptions()) {
+					selectedList.add(selected.getText());
+				}
 			}
-			return selectedList.toArray(new String[selectedList.size()]);
-		} else {
-			return selectedList.toArray(new String[selectedList.size()]);
+		} 
+		else if (mappedElement.getTagName().equals("input")) {
+			List<WebElement> selection = mappedElement.findElements(By.xpath("../../..//div[div[@class='css-12jo7m5']]"));
+			for (WebElement element : selection) {
+				selectedList.add(element.getText());
+			}
 		}
+		return selectedList.toArray(new String[selectedList.size()]);
 	}
 }
