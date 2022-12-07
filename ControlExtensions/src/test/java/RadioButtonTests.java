@@ -3,6 +3,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
+import static org.testng.Assert.assertThrows;
+
+import org.testng.Assert;
+
 import foundation.TestBase;
 
 public class RadioButtonTests extends TestBase {
@@ -50,8 +54,7 @@ public class RadioButtonTests extends TestBase {
 
 		button.select();
 		
-		var expectedResult = "Unable to Select 'No'.";
-		var actualResult = radioGroup.getSelected();
-		assertEquals(actualResult, expectedResult, "No should be returned.");
+		Assert.assertThrows(RuntimeException.class
+				, () -> radioGroup.getSelected() );
 	}
 }
