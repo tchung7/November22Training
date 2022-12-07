@@ -10,10 +10,8 @@ public class RadioButton extends ControlExtension implements ControlExtensions.R
 
 	@Override
 	public void select() {
-		this.mappedElement.click();
-	}
-
-	public WebElement getElement() {
-		return this.mappedElement;
+		if (mappedElement != null) {
+			this.mappedElement.click();
+		}
 	}
 }

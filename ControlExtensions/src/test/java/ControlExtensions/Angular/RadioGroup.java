@@ -32,19 +32,14 @@ public class RadioGroup extends ControlExtension implements ControlExtensions.Ra
 	@Override
 	public String getSelected() {
 		boolean isSelected = false;
-		String selectedLabel = null;
 
 		for (int i = 0; i < inputs.size(); i++) {
 			isSelected = inputs.get(i).isSelected();
 			if (isSelected == true) {
-				selectedLabel = labels.get(i).getText();
-				break;
-			} else if (isSelected == false && labels.get(i).getText().equals("No")) {
-				selectedLabel = "Unable to Select 'No'.";
-				break;
+				return labels.get(i).getText();
 			}
 		}
-		return selectedLabel;
+		throw new RuntimeException("'No' cannot be selected.");
 	}
 
 	public void createSubContainers() {

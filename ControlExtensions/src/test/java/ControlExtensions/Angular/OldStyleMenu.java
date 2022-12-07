@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class OldStyleMenu extends ControlExtension implements ControlExtensions.OldStyleMenu {
 
-	List<String> options = new ArrayList<>();
 	String value;
 
 	public OldStyleMenu(WebElement mappedElement) {
@@ -20,12 +19,8 @@ public class OldStyleMenu extends ControlExtension implements ControlExtensions.
 	@Override
 	public void setValue(String value) {
 		Select menu = new Select(this.mappedElement);
-		try {
-			menu.selectByVisibleText("Black");
-			;
-			throw new NoSuchElementException();
-		} catch (NoSuchElementException e) {
-			e.printStackTrace();
+		if (isOption(value)) {
+			menu.selectByVisibleText(value);
 		}
 
 		this.value = menu.getFirstSelectedOption().getText();
@@ -38,17 +33,25 @@ public class OldStyleMenu extends ControlExtension implements ControlExtensions.
 
 	@Override
 	public String[] getAllOptions() {
+		List<String> options = new ArrayList<>();
 		Select menu = new Select(this.mappedElement);
 		try {
 			for (WebElement option : menu.getOptions()) {
 				options.add(option.getText());
 			}
-			if (options == null) {
-				throw new NullPointerException();
-			}
 		} catch (NullPointerException e) {
 			System.out.println("Options were unsucessfully collected.");
 		}
 		return options.toArray(new String[options.size()]);
+	}
+
+	public boolean isOption(String value) {
+		var options = getAllOptions();
+		for (String option : options) {
+			if (option.equals(value)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

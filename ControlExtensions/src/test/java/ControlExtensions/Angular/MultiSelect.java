@@ -21,23 +21,20 @@ public class MultiSelect extends ControlExtension implements ControlExtensions.M
 	public void selectAll(String[] selectees) {
 		this.menu = new Select(this.mappedElement);
 
-		if (this.menu.isMultiple() == true) {
-			try {
+		if (isSelectValid(selectees)) {
+			if (this.menu.isMultiple() == true) {
 				for (String optionName : selectees) {
 					this.menu.selectByVisibleText(optionName);
 				}
-			} catch (NoSuchElementException e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
+			} else {
 				for (String optionName : selectees) {
 					this.menu.selectByVisibleText(optionName);
 					selectedList.add(this.menu.getFirstSelectedOption().getText());
 				}
-			} catch (NoSuchElementException e) {
-				e.printStackTrace();
 			}
+		} else {
+			throw new RuntimeException(
+					selectees + "is not a valid select, be careful about capitalization and white spaces.");
 		}
 	}
 
@@ -55,13 +52,24 @@ public class MultiSelect extends ControlExtension implements ControlExtensions.M
 					selectedList.add(selected.getText());
 				}
 			}
-		} 
-		else if (mappedElement.getTagName().equals("input")) {
-			List<WebElement> selection = mappedElement.findElements(By.xpath("../../..//div[div[@class='css-12jo7m5']]"));
+		} else if (mappedElement.getTagName().equals("input")) {
+			List<WebElement> selection = mappedElement
+					.findElements(By.xpath("../../..//div[div[@class='css-12jo7m5']]"));
 			for (WebElement element : selection) {
 				selectedList.add(element.getText());
 			}
 		}
 		return selectedList.toArray(new String[selectedList.size()]);
+	}
+
+	public boolean isSelectValid(String[] selectees) {
+		for (String input : selectees) {
+			for (WebElement option : menu.getOptions()) {
+				if (input.equals(option.getText())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
