@@ -47,7 +47,7 @@ public class RadioButtonTests extends TestBase {
 	}
 
 	@Test
-	public void ensureNoButtonIsSelected() {
+	public void ensureNoButtonCannotBeSelected() {
 		var radioGroup = page.getRadioGroup();
 
 		var button = radioGroup.getButton("No");
