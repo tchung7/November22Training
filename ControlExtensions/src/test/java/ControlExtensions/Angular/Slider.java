@@ -6,17 +6,15 @@ import org.openqa.selenium.WebElement;
 
 public class Slider extends ControlExtension implements ControlExtensions.Slider {
 
-	WebElement slider;
-	WebElement sliderValue;
+	WebElement slider = this.mappedElement.findElement(By.tagName("input"));
+	WebElement sliderValue = mappedElement.findElement(By.id("sliderValue"));;
 
 	public Slider(WebElement mappedElement) {
 		super(mappedElement);
-		this.setSlider();
 	}
 
 	@Override
 	public void setValue(String value) {
-		sliderValue = mappedElement.findElement(By.id("sliderValue"));
 		int currentPosition = Integer.parseInt(sliderValue.getAttribute("value"));
 
 		if (currentPosition > Integer.parseInt(value)) {
@@ -33,9 +31,5 @@ public class Slider extends ControlExtension implements ControlExtensions.Slider
 	@Override
 	public String getValue() {
 		return this.sliderValue.getAttribute("value");
-	}
-
-	protected void setSlider() {
-		slider = this.mappedElement.findElement(By.tagName("input"));
 	}
 }
