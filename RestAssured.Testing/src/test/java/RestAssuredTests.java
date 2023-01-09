@@ -39,15 +39,6 @@ public class RestAssuredTests {
 
 	@Test
 
-	public void getRequestwithQueryParam() {
-		String expected = "janet.weaver@reqres.in";
-		String actual = given().contentType(ContentType.JSON).body("data.email").when().get("/api/users/2").then()
-				.assertThat().statusCode(200).extract().path("email");
-		assertEquals(actual, expected, "Incorrect email was retrieved.");
-	}
-
-	@Test
-
 	public void verifyEmailFieldIsCorrect() {
 		get("/api/users/2").then().assertThat().body("data.email", equalTo("janet.weaver@reqres.in"));
 	}
