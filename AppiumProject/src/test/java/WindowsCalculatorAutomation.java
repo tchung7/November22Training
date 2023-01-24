@@ -14,7 +14,7 @@ public abstract class WindowsCalculatorAutomation {
 	@BeforeTest
 	public void setup() {
 		AppiumServiceBuilder builder = new AppiumServiceBuilder();
-		builder.usingPort(4723;);
+		builder.usingPort(4723);
 		builder.withIPAddress("127.0.0.1");
 		this.driver = launch(builder);
 		this.calculator = new Calculator(driver);
@@ -30,7 +30,7 @@ public abstract class WindowsCalculatorAutomation {
 		capabilities.setCapability("app", "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
 		capabilities.setCapability("deviceName", "WindowsPC");
 		
-AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
+		AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
 		
 		return new WindowsDriver<WebElement>(service, capabilities);
 	}
